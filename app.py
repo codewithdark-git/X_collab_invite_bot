@@ -36,7 +36,7 @@ def invite_user(username):
     response = requests.post(url, json=data, headers=headers)
     
     if response.status_code == 201:
-        return f"✅ Successfully invited {username} to {github_org}! Please check your email."
+        return f"✅ Successfully invited {username} to {github_org}! Please Check the Email"
     elif response.status_code == 422:
         return "⚠️ User is already a member or has a pending invite."
     elif response.status_code == 403:
