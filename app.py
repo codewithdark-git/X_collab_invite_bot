@@ -36,7 +36,7 @@ def invite_user(username):
     response = requests.post(url, json=data, headers=headers)
     
     if response.status_code == 201:
-        return f"✅ Successfully invited {username} to {github_org}! Please Check the Email"
+        return f"✅ Successfully invited {username} to {github_org}! Please check your email."
     elif response.status_code == 422:
         return "⚠️ User is already a member or has a pending invite."
     elif response.status_code == 403:
@@ -54,19 +54,43 @@ def get_user_id(username):
     else:
         return None
 
-st.title("🚀 Auto Invite to GitHub Community")
-username = st.text_input("Enter GitHub Username:")
+# Updated user interface
+st.set_page_config(page_title="XCollab Inviter", page_icon=":busts_in_silhouette:")
+
+st.title('XCollab Inviter')
+st.subheader("An open-source community built 𝗳𝗼𝗿 𝘀𝘁𝘂𝗱𝗲𝗻𝘁𝘀, 𝗯𝘆 𝘀𝘁𝘂𝗱𝗲𝗻𝘁𝘀.")
+st.write("""Welcome to X Collaborators, a vibrant community of developers, learners, and enthusiasts passionate about building cutting-edge solutions in AI/ML, Python, JavaScript, and beyond! Our mission
+            is to foster collaboration, innovation, and learning in the open-source ecosystem.""")
+         
+
+username = st.text_input("GitHub Username:")
 
 if st.button("Send Invite"):
     if github_token is None:
-        st.error("GitHub token is missing! Set it in environment variables.")
+        st.error("GitHub token is missing! Please set it in your environment variables.")
     elif username.strip():
         result = invite_user(username.strip())
         st.write(result)
         
-        # Show WhatsApp group link only if invitation was successful
         if result.startswith("✅"):
-            st.success("🎉 You're invited! Join our WhatsApp group for project discussions:")
-            st.markdown("### [Join WhatsApp Group](https://chat.whatsapp.com/JLuhWHAzeg7GuPRmhnGBKB)") 
+            st.success("🎉 Invitation sent successfully!")
+            
+            # Create a visually appealing container for next steps
+            with st.container():
+                st.markdown("""
+                ### Next Steps 📋
+                1. Check your email for the GitHub invitation
+                2. Join our community chat for project discussions
+                """)
+            
+            # Style the WhatsApp button with custom HTML/CSS
+            st.markdown("""
+            <div style='background-color:#25D366; padding:12px; border-radius:8px; text-align:center;'>
+                <a href='https://chat.whatsapp.com/JLuhWHAzeg7GuPRmhnGBKB' 
+                   style='color:white; text-decoration:none; font-weight:bold;'>
+                💬 Join WhatsApp Group
+                </a>
+            </div>
+            """, unsafe_allow_html=True)
     else:
         st.warning("Please enter a valid GitHub username.")
