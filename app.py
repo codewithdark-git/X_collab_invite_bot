@@ -85,12 +85,21 @@ if st.button("Send Invite"):
             
             # Style the WhatsApp button with custom HTML/CSS
             st.markdown("""
-            <div style='background-color:#25D366; padding:12px; border-radius:8px; text-align:center;'>
-                <a href='https://chat.whatsapp.com/JLuhWHAzeg7GuPRmhnGBKB' 
-                   style='color:white; text-decoration:none; font-weight:bold;'>
-                💬 Join WhatsApp Group
-                </a>
-            </div>
+                <div style='background-color:#25D366; padding:18px; border-radius:12px; text-align:center;'>
+                    <h3 style='color:white; margin-bottom:10px;'>🚀 Join the XCollab WhatsApp Community!</h3>
+                    <p style='color:white; font-size:14px; margin-bottom:12px;'>
+                        As a GitHub XCollab member, joining the <b>Projects Discussion Group</b> is <b>mandatory</b>.  
+                        Connect with like-minded developers, collaborate on open-source projects,  
+                        and contribute to innovative discussions in our dedicated WhatsApp group.
+                    </p>
+                    <a href='https://chat.whatsapp.com/CuRtWYUySlxFiOwzrb21tg' 
+                       style='background-color:white; color:#25D366; padding:12px 24px; 
+                              border-radius:8px; text-decoration:none; font-weight:bold; 
+                              display:inline-block; font-size:16px;'>
+                        💬 Join Now
+                    </a>
+                </div>
             """, unsafe_allow_html=True)
+
     else:
         st.warning("Please enter a valid GitHub username.")
